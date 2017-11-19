@@ -7,8 +7,6 @@ class RateLimiterFeature : Feature
     {
         if (!context.Settings.TryGet<Properties>(out var properties)) return;
 
-        var limit = properties.Concurrency;
-        var duration = TimeSpan.FromSeconds((double)limit / properties.Limit);
-        context.Pipeline.Register(behavior: new RateLimitBehavior(limit, duration), description: nameof(RateLimitBehavior));
+        context.Pipeline.Register(behavior: new RateLimitBehavior(properties.Limit, properties.Duration), description: nameof(RateLimitBehavior));
     }
 }

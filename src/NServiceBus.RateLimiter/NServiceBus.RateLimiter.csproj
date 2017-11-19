@@ -3,13 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>NServiceBus.RateLimiter</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>ramonsmits</Authors>
     <Description>Rate Limiting NService Pipeline extension</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter/blob/1.0.0/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter/blob/1.0.1/LICENSE</PackageLicenseUrl>
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource> 
     <RepositoryUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</RepositoryUrl>

@@ -26,9 +26,8 @@ namespace NServiceBus
         {
             var properties = new global::Properties
             {
-                Duration = TimeSpan.FromSeconds(1),
-                Limit = limitPerSecond,
-                Concurrency = concurrency
+                Duration = TimeSpan.FromSeconds(1.0 / limitPerSecond * concurrency),
+                Limit = concurrency,
             };
             var settings = instance.GetSettings();
             settings.Set<global::Properties>(properties);
@@ -50,7 +49,6 @@ namespace NServiceBus
             {
                 Duration = duration,
                 Limit = limit,
-                Concurrency = limit
             };
             var settings = instance.GetSettings();
             settings.Set<global::Properties>(properties);

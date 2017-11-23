@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <PackageId>NServiceBus.RateLimiter</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <Authors>ramonsmits</Authors>
     <Description>Rate Limiting NService Pipeline extension</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

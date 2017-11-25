@@ -1,10 +1,22 @@
 # NServiceBus.RateLimiter
 
-**For NServiceBus 6+**
+Before NServiceBus 6 there was the ability to throttle the number of messages processed per second. This feature was deprecated because throttling can be conflicting with the different types of tranports and transaction modes. This package restores this functionality.
 
-Before NServiceBus 6 there was the ability to throttle the number of messages processed per second. This feature was deprecated because throttling can be conflicting with the different types of tranports and the way messages are retrieved.
+
+## Version compatibility
+
+NServiceBus | NServiceBus.RateLimiter
+------------|------------------------
+v6.x        | v1.x
+v7.0        | v2.x
+
+## Use cases
+
+Rate limiting can be used to reduce the pressure on your infrastructure or the infrastructure of others. Lets assume you send out a mass mailing and you do not want to consume a lot of bandwidth or maybe you are calling into a third party services that doesn't allow more then 100 requests per second. Rate limiting can help to make the whole processing more efficient without triggering unneeded retry logic.
+
 
 ## Important
+
 The packages registers itself in the first stage of the pipeline (`ITransportReceiveContext`) this means that when this behavior is called the message is actually already retrieved from the queue. If you use a transactional queue this means that your transport transaction duration will increase (MSMQ, SQL Server, etc.). If you use lease based transport (Azure Storage Queues).
 
 For this reason a warning log entry is written is the delay takes more then 5 seconds.

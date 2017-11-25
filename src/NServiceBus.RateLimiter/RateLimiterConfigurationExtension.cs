@@ -1,5 +1,4 @@
 ﻿using System;
-using NServiceBus;
 using NServiceBus.Configuration.AdvanceExtensibility;
 
 namespace NServiceBus
@@ -31,6 +30,7 @@ namespace NServiceBus
             };
             var settings = instance.GetSettings();
             settings.Set<global::Properties>(properties);
+            instance.EnableFeature<RateLimiterFeature>();
         }
 
         /// <summary>
@@ -52,8 +52,7 @@ namespace NServiceBus
             };
             var settings = instance.GetSettings();
             settings.Set<global::Properties>(properties);
+            instance.EnableFeature<RateLimiterFeature>();
         }
-
     }
-
 }

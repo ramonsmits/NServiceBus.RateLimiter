@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <!-- AssemblyFileVersionAttribute -->
-    <FileVersion>1.0.4</FileVersion>
+    <FileVersion>2.0.0</FileVersion>
     <!-- AssemblyInformationalVersionAttribute -->
-    <Version>$(FileVersion)</Version>
+    <Version>$(FileVersion)-beta0001</Version>
     <!-- AssemblyVersionAttribute -->
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <!-- Nuget -->
     <PackageVersion>$(Version)</PackageVersion>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <PackageId>NServiceBus.RateLimiter</PackageId>
     <Authors>ramonsmits</Authors>
     <Description>Rate Limiting NService Pipeline extension</Description>
@@ -26,13 +26,13 @@
     <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
+ 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="[6,7)" />
+    <PackageReference Include="NServiceBus" Version="[7.0.0-beta0012,8.0.0)" />
   </ItemGroup>
 
 </Project>

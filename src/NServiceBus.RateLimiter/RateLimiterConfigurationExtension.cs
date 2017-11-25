@@ -1,5 +1,5 @@
 ﻿using System;
-using NServiceBus.Configuration.AdvanceExtensibility;
+using NServiceBus.Configuration.AdvancedExtensibility;
 
 namespace NServiceBus
 {

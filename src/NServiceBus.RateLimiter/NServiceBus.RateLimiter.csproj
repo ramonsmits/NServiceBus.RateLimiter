@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!-- AssemblyFileVersionAttribute -->
     <FileVersion>2.0.0</FileVersion>
     <!-- AssemblyInformationalVersionAttribute -->
-    <Version>$(FileVersion)-beta0001</Version>
+    <Version>$(FileVersion)</Version>
     <!-- AssemblyVersionAttribute -->
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <!-- Nuget -->
@@ -20,7 +20,7 @@
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
     <RepositoryUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</RepositoryUrl>
-    <Copyright>Copyright 2017 (c) Ramon Smits</Copyright>
+    <Copyright>Copyright 2017, 2018, 2019 (c) Ramon Smits</Copyright>
     <PackageTags>nservicebus pipeline</PackageTags>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
@@ -32,7 +32,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="[7.0.0-beta0012,8.0.0)" />
+    <PackageReference Include="NServiceBus" Version="[7.0.0,8.0.0)" />
   </ItemGroup>
 
 </Project>

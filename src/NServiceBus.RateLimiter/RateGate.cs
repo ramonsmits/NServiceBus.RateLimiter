@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Threading;
@@ -11,8 +10,8 @@ using System.Threading.Tasks;
 /// <remarks>
 ///     <para>
 ///     To control the rate of an action using a <see cref="RateGate"/>, 
-///     code should simply call <see cref="WaitToProceed()"/> prior to 
-///     performing the action. <see cref="WaitToProceed()"/> will block
+///     code should simply call <see cref="WaitAsync()"/> prior to 
+///     performing the action. <see cref="WaitAsync()"/> will block
 ///     the current thread until the action is allowed based on the rate 
 ///     limit.
 ///     </para>
@@ -22,7 +21,7 @@ using System.Threading.Tasks;
 ///     threads.
 ///     </para>
 /// </remarks>
-class RateGate : IDisposable
+sealed class RateGate : IDisposable
 {
     static readonly long TicksMilliseconds = Stopwatch.Frequency / 1000;
     static readonly TimeSpan DisablePeriodicSignaling = TimeSpan.FromMilliseconds(-1);
@@ -86,10 +85,10 @@ class RateGate : IDisposable
     }
 
     // Callback for the exit timer that exits the semaphore based on exit times 
-    // in the queue and then sets the timer for the nextexit time.
+    // in the queue and then sets the timer for the next exit time.
     void ExitTimerCallback(object state)
     {
-        while (true)
+        while(true)
         {
             // While there are exit times that are passed due still in the queue,
             // exit the semaphore and dequeue the exit time.
@@ -124,8 +123,9 @@ class RateGate : IDisposable
     /// specified timeout elapses.
     /// </summary>
     /// <param name="millisecondsTimeout">Number of milliseconds to wait, or -1 to wait indefinitely.</param>
+    /// <param name="cancellationToken">The System.Threading.CancellationToken to observe.</param>
     /// <returns>true if the thread is allowed to proceed, or false if timed out</returns>
-    public async Task<bool> WaitToProceed(int millisecondsTimeout)
+    public async Task<bool> WaitAsync(int millisecondsTimeout, CancellationToken cancellationToken)
     {
         // Check the arguments.
         if (millisecondsTimeout < -1)
@@ -134,7 +134,7 @@ class RateGate : IDisposable
         CheckDisposed();
 
         // Block until we can enter the semaphore or until the timeout expires.
-        var entered = await _semaphore.WaitAsync(millisecondsTimeout)
+        var entered = await _semaphore.WaitAsync(millisecondsTimeout, cancellationToken)
             .ConfigureAwait(false);
 
         // If we entered the semaphore, compute the corresponding exit time 
@@ -152,19 +152,20 @@ class RateGate : IDisposable
     /// Blocks the current thread until allowed to proceed or until the
     /// specified timeout elapses.
     /// </summary>
-    /// <param name="timeout"></param>
+    /// <param name="timeout">A System.TimeSpan that represents the number of milliseconds to wait, a System.TimeSpan that represents -1 milliseconds to wait indefinitely.</param>
+    /// <param name="cancellationToken">The System.Threading.CancellationToken to observe.</param>
     /// <returns>true if the thread is allowed to proceed, or false if timed out</returns>
-    public Task<bool> WaitToProceed(TimeSpan timeout)
+    public Task<bool> WaitAsync(TimeSpan timeout, CancellationToken cancellationToken)
     {
-        return WaitToProceed((int)timeout.TotalMilliseconds);
+        return WaitAsync((int)timeout.TotalMilliseconds, cancellationToken);
     }
 
     /// <summary>
     /// Blocks the current thread indefinitely until allowed to proceed.
     /// </summary>
-    public Task WaitToProceed()
+    public Task WaitAsync()
     {
-        return WaitToProceed(Timeout.Infinite);
+        return WaitAsync(Timeout.Infinite, CancellationToken.None);
     }
 
     // Throws an ObjectDisposedException if this object is disposed.

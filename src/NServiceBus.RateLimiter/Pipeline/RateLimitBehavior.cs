@@ -18,11 +18,11 @@ class RateLimitBehavior : IBehavior<ITransportReceiveContext, ITransportReceiveC
     public async Task Invoke(ITransportReceiveContext context, Func<ITransportReceiveContext, Task> next)
     {
         var start = Stopwatch.StartNew();
-        await Gate.WaitToProceed().ConfigureAwait(false);
+        await Gate.WaitAsync().ConfigureAwait(false);
         var duration = start.Elapsed;
         if (duration > WarningThresshold)
         {
-            Log.InfoFormat("Message '{0}' delayed by {1:g} due to throttling. This can conflict with message lease times or transaction timeouts. Consider lowering the concurrency level or to shorten the rate limiting duration.",
+            Log.InfoFormat("Message '{0}' delayed by {1:g} due to throttling. This can conflict with message lease times or transaction timeouts. Consider lowering the burst size or to shorten the rate limiting duration.",
                 context.Message.MessageId,
                 duration
             );

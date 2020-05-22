@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!-- AssemblyFileVersionAttribute -->
-    <FileVersion>2.0.0</FileVersion>
+    <FileVersion>2.1.0</FileVersion>
     <!-- AssemblyInformationalVersionAttribute -->
     <Version>$(FileVersion)</Version>
     <!-- AssemblyVersionAttribute -->
@@ -20,7 +20,7 @@
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeSource>True</IncludeSource>
     <RepositoryUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</RepositoryUrl>
-    <Copyright>Copyright 2017, 2018, 2019 (c) Ramon Smits</Copyright>
+    <Copyright>Copyright 2017, 2018, 2019, 2020 (c) Ramon Smits</Copyright>
     <PackageTags>nservicebus pipeline</PackageTags>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>

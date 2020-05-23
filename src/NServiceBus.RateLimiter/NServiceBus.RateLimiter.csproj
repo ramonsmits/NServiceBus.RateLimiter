@@ -16,8 +16,9 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter/blob/$(PackageVersion)/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSource>True</IncludeSource>
     <RepositoryUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</RepositoryUrl>
     <Copyright>Copyright 2017, 2018, 2019, 2020 (c) Ramon Smits</Copyright>
@@ -25,6 +26,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,6 +35,7 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="[7.0.0,8.0.0)" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>

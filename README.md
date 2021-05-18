@@ -17,7 +17,7 @@ Rate limiting can be used to reduce the pressure on your infrastructure or the i
 
 ## Important
 
-The packages registers itself in the first stage of the pipeline (`ITransportReceiveContext`) this means that when this behavior is called the message is actually already retrieved from the queue. If you use a transactional queue this means that your transport transaction duration will increase (MSMQ, SQL Server, etc.). If you use lease based transport (Azure Storage Queues).
+The packages registers itself in the first stage of the pipeline (`ITransportReceiveContext`) this means that when this behavior is called the message is actually already retrieved from the queue. If you use a transactional queue this means that your transport transaction duration will increase (MSMQ, SQL Server, etc.). If you use lease based transport (Azure Service Bus or Azure Storage Queues) the lease duration might conflict with the processing delay introduced and unintentionally cause more-than-once processing.
 
 For this reason a warning log entry is written when the delay takes more then 5 seconds.
 
@@ -25,11 +25,16 @@ For this reason a warning log entry is written when the delay takes more then 5 
 
 Consider lowering the burst size as that might cause the rate limit to be reached very fast.
 
+## Recommendations
+
+It is recommended to:
+
+1. Disable prefetching if a transport supports this. Prefetching doesn't make sense if the processing gets delayed.
+2. Lower the [concurrency limit which by default is equal the the number of cores of the machine](https://docs.particular.net/nservicebus/operations/tuning)
 
 ## Installation
 
 Install the Nuget package [NServiceBus.RateLimiter](https://www.nuget.org/packages/NServiceBus.RateLimiter)
-
 
 ## Configuration
 

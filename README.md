@@ -41,7 +41,8 @@ Install the Nuget package [NServiceBus.RateLimiter](https://www.nuget.org/packag
 ### Example: Automatic interval calculation
 
 Calculates the smallest interval based on rate expressed in items per second based on the allowed concurrency.
-```
+
+```c#
 endpointConfiguration.ApplyRateLimiting(int limitPersecond)
 ```
 
@@ -51,7 +52,7 @@ Limits the processing rate per second based on `limitPersecond`.
 
 If you allow for 100 messages per second, with a concurrency of 4 then the logic will limit processing of 4 messages every 400 milliseconds.
 
-```
+```c#
 endpointConfiguration.ApplyRateLimiting(limitPerSecond:10, burstSize:4);
 ```
 
@@ -61,7 +62,8 @@ NOTE: The burst window duration must be larger than 100 milliseconds. The `burst
 
 
 Manual control over the rate limit and duration.
-```
+
+```c#
 endpointConfiguration.ApplyRateLimiting(int limit, TimeSpan duration)
 ```
 
@@ -71,7 +73,7 @@ If you do not want to use the smallest interval, but want to allow for higher bu
 
 To allow bursts of 250 items at an average rate of 10 messages per second just enter the max burst size. This will internally calculate the corresponding burst window duration. Here this would be `250 messages / 10 messages per second  = 25 seconds`.
 
-```
+```c#
 endpointConfiguration.ApplyRateLimiting(limitPerSecond:10, burstSize:250);
 ```
 

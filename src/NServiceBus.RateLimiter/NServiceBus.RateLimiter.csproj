@@ -7,23 +7,24 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>NServiceBus.RateLimiter</PackageId>
     <Authors>ramonsmits</Authors>
-    <Description>Rate Limiting NService Pipeline extension</Description>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <IncludeSymbols>True</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <IncludeSource>True</IncludeSource>
-    <RepositoryUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</RepositoryUrl>
-    <Copyright>Copyright (c) Ramon Smits 2017, 2018, 2019, 2020, 2021, 2022, 2023</Copyright>
-    <PackageTags>nservicebus pipeline</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <Copyright>Copyright (c) Ramon Smits 2017, 2018, 2019, 2020, 2021, 2022, 2023</Copyright>
+    <Description>Rate Limiting NService Pipeline extension</Description>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!--<GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
+    <IncludeSource>True</IncludeSource>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageId>NServiceBus.RateLimiter</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>nservicebus pipeline</PackageTags>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</RepositoryUrl>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

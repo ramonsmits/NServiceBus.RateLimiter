@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 
-class RateLimitBehavior : IBehavior<ITransportReceiveContext, ITransportReceiveContext>
+sealed class RateLimitBehavior : IBehavior<ITransportReceiveContext, ITransportReceiveContext>
 {
     readonly ILog Log = LogManager.GetLogger("RateLimiter");
     readonly TimeSpan WarningThresshold = TimeSpan.FromSeconds(5);

@@ -1,7 +1,7 @@
 ﻿using NServiceBus.Features;
 using NServiceBus.Logging;
 
-class RateLimiterFeature : Feature
+sealed class RateLimiterFeature : Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {

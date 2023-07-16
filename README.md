@@ -79,3 +79,16 @@ endpointConfiguration.ApplyRateLimiting(limitPerSecond:10, burstSize:250);
 ```
 
 Using this logic to cope with sudden peaks of incoming messages but still maintain an average  rate of messages per second.
+
+### Example: Disable duration log entry message
+
+By default, is processing does not start within 5 seconds a message is written to the log. This can be disabled.
+
+```c#
+endpointConfiguration.ApplyRateLimiting(cfg=>{
+  cfg.Duration = TimeSpan.FromSeconds(1),
+  cfg.Limit = 10,
+  cfg.StartDurationThreshold = Timeout.InfiniteTimeSpan; // or TimeSpan.FromMilliseconds(-1);
+cfg.
+});
+```

@@ -1,0 +1,41 @@
+name: .NET
+on:
+  workflow_dispatch: # Allow running the workflow manually from the GitHub UI
+  push:
+    branches:
+      - 'main'       # Run the workflow when pushing to the main branch
+  pull_request:
+    branches:
+      - '*'          # Run the workflow for all pull requests
+  release:
+    types:
+      - published    # Run the workflow when a new GitHub release is published
+env:
+  DOTNET_NOLOGO: true
+  NUGET_DIRECTORY: ${{ github.workspace }}/nuget
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+        fetch-depth: 0 # Get all history to allow versioning via git traversal
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.x
+    - name: Restore
+      run: dotnet restore src
+    - name: Build
+      run: dotnet build src --no-restore --configuration Release
+    - name: Pack
+      run: dotnet pack src --no-restore  --no-build --configuration Release --output ${{ env.NUGET_DIRECTORY }}
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: nuget
+        if-no-files-found: error
+        retention-days: 5
+        path: ${{ env.NUGET_DIRECTORY }}/*.nupkg

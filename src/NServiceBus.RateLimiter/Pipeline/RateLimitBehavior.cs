@@ -28,7 +28,7 @@ sealed class RateLimitBehavior : IBehavior<ITransportReceiveContext, ITransportR
             if (duration > StartDurationThreshold)
             {
                 Log.InfoFormat(
-                    "Message '{0}' delayed due to throttling by {1:g} which is more than the configured `WarningThresshold` value {2:g}. This can conflict with message lease times or transaction timeouts. Consider lowering the burst size or to shorten the rate limiting duration. ",
+                    "Message '{0}' processing delayed due to throttling by {1:g} which exceeds the configured `" + nameof(RateLimiterConfiguration.StartDurationThreshold) + "` value {2:g}. This can cause issues with message lease times or transaction timeouts. Consider lowering the burst size, shorten the rate limiting duration, reducing the allowed concurrenty, or transport prefetching",
                     context.Message.MessageId,
                     duration,
                     StartDurationThreshold

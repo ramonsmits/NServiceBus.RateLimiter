@@ -26,6 +26,6 @@ jobs:
       with:
         dotnet-version: 7.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src --configuration Release
     - name: Build solution
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build src --no-restore --configuration Release

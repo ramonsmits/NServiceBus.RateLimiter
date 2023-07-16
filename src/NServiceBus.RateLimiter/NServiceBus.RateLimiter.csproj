@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- AssemblyFileVersionAttribute -->
-    <FileVersion>3.0.0</FileVersion>
-    <!-- AssemblyInformationalVersionAttribute -->
-    <Version>$(FileVersion)</Version>
-    <!-- AssemblyVersionAttribute -->
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
-    <!-- Nuget -->
-    <PackageVersion>$(Version)</PackageVersion>
     <TargetFrameworks>net472;net6.0</TargetFrameworks>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <PackageId>NServiceBus.RateLimiter</PackageId>
     <Authors>ramonsmits</Authors>
     <Description>Rate Limiting NService Pipeline extension</Description>
@@ -21,20 +18,24 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <IncludeSource>True</IncludeSource>
     <RepositoryUrl>https://github.com/ramonsmits/NServiceBus.RateLimiter</RepositoryUrl>
-    <Copyright>Copyright 2017, 2018, 2019, 2020, 2021, 2022 (c) Ramon Smits</Copyright>
+    <Copyright>Copyright (c) Ramon Smits 2017, 2018, 2019, 2020, 2021, 2022, 2023</Copyright>
     <PackageTags>nservicebus pipeline</PackageTags>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\key.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>latest</LangVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="[8.0.1, 9.0.0)" />
+    <PackageReference Include="MinVer" Version="4.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
 

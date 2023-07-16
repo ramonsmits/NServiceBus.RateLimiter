@@ -26,12 +26,12 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.x
-    - name: Restore dependencies
+    - name: Restore
       run: dotnet restore src
-    - name: Build solution
+    - name: Build
       run: dotnet build src --no-restore --configuration Release
     - name: Pack
-    - run: dotnet pack src --no-restore  --no-build --configuration Release --output ${{ env.NUGET_DIRECTORY }}
+      run: dotnet pack src --no-restore  --no-build --configuration Release --output ${{ env.NUGET_DIRECTORY }}
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:

@@ -10,6 +10,7 @@ NServiceBus | NServiceBus.RateLimiter
 v6.x        | v1.x
 v7.x        | v2.x
 v8.x        | v3.x
+v9.x        | v4.x
 
 ## Use cases
 

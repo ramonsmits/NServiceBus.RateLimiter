@@ -1,8 +1,7 @@
-﻿using NServiceBus;
-
-var cfg = new EndpointConfiguration("RateLimiterDemo");
+﻿var cfg = new EndpointConfiguration("RateLimiterDemo");
+cfg.UseSerialization(new SystemJsonSerializer());
 cfg.UseTransport(new LearningTransport());
-cfg.LimitMessageProcessingConcurrencyTo(100);   // Increase concurrency to the transport will fetch many messages
+cfg.LimitMessageProcessingConcurrencyTo(100);   // Increase concurrency so the transport will fetch many messages
 
 cfg.ApplyRateLimiting(c =>
 {

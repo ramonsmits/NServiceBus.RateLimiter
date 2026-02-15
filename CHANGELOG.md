@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [5.0.0] - 2026-02-15
 
 Target: NServiceBus 10.x | .NET 10.0
 
@@ -81,7 +81,7 @@ Target: NServiceBus 6.x
 
 - Initial release
 
-[Unreleased]: https://github.com/ramonsmits/NServiceBus.RateLimiter/compare/4.0.0...HEAD
+[5.0.0-preview.1]: https://github.com/ramonsmits/NServiceBus.RateLimiter/compare/4.0.0...5.0.0-preview.1
 [4.0.0]: https://github.com/ramonsmits/NServiceBus.RateLimiter/compare/3.1.0...4.0.0
 [3.1.0]: https://github.com/ramonsmits/NServiceBus.RateLimiter/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/ramonsmits/NServiceBus.RateLimiter/compare/2.1.0...3.0.0

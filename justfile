@@ -41,11 +41,16 @@ release version="":
         version="{{version}}"
     fi
     [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$ ]] && echo "Invalid semver: $version" && exit 1
+    # rc. pre-release = RTM: use final version in changelog
+    changelog_version="$version"
+    if [[ "$version" =~ ^([0-9]+\.[0-9]+\.[0-9]+)-rc\. ]]; then
+        changelog_version="${BASH_REMATCH[1]}"
+    fi
     grep -q '## \[Unreleased\]' CHANGELOG.md || { echo "No [Unreleased] section in CHANGELOG.md"; exit 1; }
     git diff --quiet && git diff --cached --quiet || { echo "Working tree is dirty, commit or stash first"; exit 1; }
     date=$(date +%Y-%m-%d)
-    sed -i "s/## \[Unreleased\]/## [$version] - $date/" CHANGELOG.md
-    sed -i "s|\[Unreleased\]: \(.*\)/compare/\(.*\)\.\.\.HEAD|[$version]: \1/compare/\2...$version|" CHANGELOG.md
+    sed -i "s/## \[Unreleased\]/## [$changelog_version] - $date/" CHANGELOG.md
+    sed -i "s|\[Unreleased\]: \(.*\)/compare/\(.*\)\.\.\.HEAD|[$changelog_version]: \1/compare/\2...$changelog_version|" CHANGELOG.md
     git add CHANGELOG.md
     git commit -m "Release $version"
     git tag "$version"

@@ -6,6 +6,9 @@ Target: NServiceBus 10.x | .NET 10.0
 
 - Support NServiceBus 10.x
 - Target net10.0
+- Replace custom `RateGate` with .NET built-in `TokenBucketRateLimiter` (`System.Threading.RateLimiting`), fixing thread safety issues and improving performance
+- Propagate pipeline `CancellationToken` to the rate limiter for clean endpoint shutdown
+- Use `Stopwatch.GetElapsedTime()` instead of allocating `Stopwatch` instances
 - Code cleanup: simplify Dispose, modern argument validation, extract `ApplyConfiguration` helper
 - Remove redundant `Microsoft.SourceLink.GitHub` (built into .NET 8+ SDK)
 - Modernize GitHub Actions CI workflow (actions v4, .NET 10.x, pack on tag, publish via dispatch)
@@ -14,6 +17,7 @@ Target: NServiceBus 10.x | .NET 10.0
 ### Dependencies
 
 - NServiceBus [10.0.0, 11.0.0)
+- System.Threading.RateLimiting 8.0.0
 - MinVer 7.0.0
 
 ## [4.0.0] - 2024-06-14

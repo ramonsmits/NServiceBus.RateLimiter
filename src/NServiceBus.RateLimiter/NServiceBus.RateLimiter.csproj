@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="[10.0.0,11.0.0)" />
+    <PackageReference Include="System.Threading.RateLimiting" Version="8.0.0" />
     <PackageReference Include="MinVer" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
